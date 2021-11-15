@@ -1,15 +1,12 @@
 package com.hz;
 
-import java.awt.geom.NoninvertibleTransformException;
-import java.io.IOException;
-
 public class Main {
-
     public static void main(String[] args) {
-	// write your code here
+	    // write your code here
 
         ConsoleReader reader = new ConsoleReader();
         ConsoleWriter writer = new ConsoleWriter();
+        BooleanAdapter adapter = new BooleanAdapter(reader);
 
         // ask questions
         String q1 = "Do you like eating vegetables?";
@@ -20,13 +17,8 @@ public class Main {
         // ask question to user
         writer.write(q1);
 
-        // read response
-        Boolean ans1 = reader.readLine().equals("Yep");
-
-        //TODO
-        // the reader should accept the following values as true:
-        // "true", "yes", "oh yeah", "great", "sure", "love to", "of course", "always", "never done otherwise"
-
+        // read response and decide whether the user input is positive or negative
+        Boolean ans1 = adapter.readResponse();
 
         if (ans1) {
             writer.write(good);
