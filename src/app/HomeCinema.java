@@ -65,9 +65,9 @@ public class HomeCinema {
         this.cdPlayer.off();
     }
 
-    public void playRadio() {
+    public void playRadio(int frequency) {
         this.tuner.on();
-        this.tuner.setFrequency(101.20);
+        this.tuner.setFrequency(frequency);
         this.amplifier.on();
         this.amplifier.setVolume(5);
         this.amplifier.setTuner(this.tuner);

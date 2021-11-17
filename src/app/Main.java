@@ -8,7 +8,7 @@ public class Main {
         homeCinema.stopMovie();
         homeCinema.playMusic("Rick Astley - Never gonna give you up");
         homeCinema.stopMusic();
-        homeCinema.playRadio();
+        homeCinema.playRadio(101.20);
         homeCinema.stopRadio();
     }
 }
