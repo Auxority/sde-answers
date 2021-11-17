@@ -50,7 +50,7 @@ To listen to the radio we should:
   5) set the amplifier to tuner mode
 
 When  we're ready listening music:
-  1) turn of the tuner
+  1) turn off the tuner
   2) turn off the amplifier
   
   
