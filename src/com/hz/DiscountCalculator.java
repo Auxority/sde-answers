@@ -1,43 +1,29 @@
 package com.hz;
 
+import discounts.BlackFridayDiscount;
+import discounts.ChristmasEveDiscount;
+import discounts.DiscountStrategy;
+import discounts.RegularDiscount;
 import products.Product;
 
 public class DiscountCalculator {
 
     private Customer customer;
+    private DiscountStrategy discountStrategy;
 
-    public void setChristmasEve(boolean christmasEve) {
-        isChristmasEve = christmasEve;
-    }
-
-    private boolean isChristmasEve;
-
-    public DiscountCalculator(Customer customer) {
+    public DiscountCalculator(Customer customer, SalesAction salesAction) {
         this.customer = customer;
+        if (salesAction == SalesAction.BlackFriday) {
+            this.discountStrategy = new BlackFridayDiscount();
+        } else if (salesAction == SalesAction.ChristmasEve) {
+            this.discountStrategy = new ChristmasEveDiscount();
+        } else if (salesAction == SalesAction.NoAction) {
+            this.discountStrategy = new RegularDiscount();
+        }
     }
 
     public double getDiscount(Product product, int index) {
-
-        double discount = 0.0;
-
-        boolean isFirstProduct = index == 0;
-
-        // on Christmas Eve, 1st product 20%, the next 12.5% discount
-        if(isChristmasEve) {
-
-            if(isFirstProduct) {
-                discount = .20;
-            } else {
-                discount = .125;
-            }
-
-        }
-
-        // Default situation: new customers full price, regular 15% off
-        else if(customer.isRegular()) {
-            discount = .15;
-        }
-
-        return 1 - discount;
+        double discount = 1 - this.discountStrategy.getDiscount(this.customer, product, index);
+        return discount;
     }
 }
